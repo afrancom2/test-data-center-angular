@@ -1,0 +1,52 @@
+<div class="container mt-4">
+  <form [formGroup]="filterForm" (ngSubmit)="fetchRecharges()" class="row g-3">
+    <div class="col-md-6">
+      <label for="operatorSelect" class="form-label">Operador</label>
+      <select id="operatorSelect" class="form-select" formControlName="operatorId">
+        <option value="" disabled selected>Seleccione un operador</option>
+        <option *ngFor="let op of operators" [value]="op.id">{{ op.name }}</option>
+      </select>
+    </div>
+
+    <div class="col-md-6">
+      <label for="saleSelect" class="form-label">Vendedor</label>
+      <select id="saleSelect" class="form-select" formControlName="saleId">
+        <option value="" disabled selected>Seleccione un vendedor</option>
+        <option *ngFor="let sale of sales" [value]="sale.id">{{ sale.name }}</option>
+      </select>
+    </div>
+
+    <div class="col-12 d-flex justify-content-start gap-2">
+      <button type="submit" class="btn btn-primary" [disabled]="filterForm.invalid">Buscar Recargas</button>
+      <button type="submit" class="btn btn-danger" (click)="goBack()">Volver</button>
+    </div>
+  </form>
+
+  <div *ngIf="recharges.length > 0; else emptyState" class="mt-4">
+    <h3 class="mb-3">Recargas encontradas</h3>
+    <table class="table table-striped table-bordered">
+      <thead class="table-light">
+      <tr>
+        <th>Monto</th>
+        <th>Fecha</th>
+        <th>Operador</th>
+        <th>Vendedor</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let recharge of recharges">
+        <td>{{ recharge.amount | currency: 'COP ' : 'symbol':'1.2-2' }}</td>
+        <td>{{ recharge.dateTime | date: 'dd/MM/yyyy HH:mm' }}</td>
+        <td>{{ recharge.operator.name }}</td>
+        <td>{{ recharge.sale.name }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #emptyState>
+    <div class="alert alert-warning mt-4">
+      No hay recargas disponibles para los filtros seleccionados.
+    </div>
+  </ng-template>
+</div>

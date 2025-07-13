@@ -1,0 +1,41 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="container mt-4 p-4 border rounded shadow-sm bg-light">
+  <div class="mb-3">
+    <label for="amount" class="form-label">Monto</label>
+    <input
+      type="text"
+      id="amount"
+      formControlName="amount"
+      class="form-control"
+    />
+    <div class="text-danger mt-1" *ngIf="form.get('amount')?.invalid && form.get('amount')?.touched">
+      <small *ngIf="form.get('amount')?.errors?.['required']">El monto es obligatorio.</small>
+      <small *ngIf="form.get('amount')?.errors?.['invalidNumber']">Solo se permiten números.</small>
+      <small *ngIf="form.get('amount')?.errors?.['min']">Debe ser mayor a 0.</small>
+      <small *ngIf="form.get('amount')?.errors?.['maxTwoDecimals']">Máximo dos decimales permitidos.</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="operator" class="form-label">Operador</label>
+    <select id="operator" formControlName="operatorId" class="form-select">
+      <option [ngValue]="null" disabled class="text-muted">Seleccione un operador</option>
+      <option *ngFor="let op of operators" [value]="op.id">{{ op.name }}</option>
+    </select>
+    <div class="text-danger mt-1" *ngIf="form.get('operatorId')?.invalid && form.get('operatorId')?.touched">
+      <small>Debe seleccionar un operador.</small>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="sale" class="form-label">Vendedor</label>
+    <select id="sale" formControlName="saleId" class="form-select">
+      <option [ngValue]="null">Seleccione un vendedor</option>
+      <option *ngFor="let sale of sales" [value]="sale.id">{{ sale.name }}</option>
+    </select>
+    <div class="text-danger mt-1" *ngIf="form.get('saleId')?.invalid && form.get('saleId')?.touched">
+      <small>Debe seleccionar un vendedor.</small>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Recargar</button>
+</form>
