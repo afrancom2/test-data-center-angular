@@ -8,7 +8,7 @@ import {SaleFacade} from "../../application/recharge/sale.facade";
 import {CommonModule} from "@angular/common";
 import Swal from 'sweetalert2';
 import {Router} from '@angular/router';
-import {maxTwoDecimalsValidator} from "../shared/validators/max-two-decimals.validator";
+import {maxTwoDecimalsValidator} from "../../shared/validators/max-two-decimals.validator";
 
 @Component({
   selector: 'app-recharge-form',

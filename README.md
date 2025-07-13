@@ -1,27 +1,122 @@
-# TestDataCenterAngular
+# Frontend - Test Data Center Recargas App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.4.
+Este proyecto es el **frontend** de una aplicación para realizar recargas de diferentes operadores, construido con **Angular 18**, **Bootstrap 5** y consumo de APIs RESTful documentadas con Swagger.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## ⚙️ Requisitos Previos
 
-## Code scaffolding
+- Node.js `18.x` o superior
+- Angular CLI `16+`
+- Puerto `4200` libre en tu máquina
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## ▶️ Ejecución del Proyecto
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Clona el repositorio (si no lo hiciste aún):
 
-## Running unit tests
+   ```bash
+   git clone https://github.com/afrancom2/test-data-center
+   cd test-data-center/frontend
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Instala las dependencias:
 
-## Running end-to-end tests
+   ```bash
+   npm install
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. Inicia el servidor de desarrollo:
 
-## Further help
+   ```bash
+   ng serve
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+4. Abre el navegador en:
+
+   [http://localhost:4200](http://localhost:4200)
+
+---
+
+## 🚀 Funcionalidades
+
+- Registro de recargas con validación de formulario.
+- Consulta de recargas por operador y vendedor.
+- Manejo de errores amigables al usuario.
+- Validaciones avanzadas (como máximo dos decimales).
+- Estilo visual usando Bootstrap 5.
+
+---
+
+## 🧪 Validaciones del Formulario
+
+- Solo se permiten valores numéricos válidos para el monto.
+- El monto debe ser mayor a 0 y tener máximo 2 decimales.
+- El operador y vendedor deben ser seleccionados.
+- Se utiliza `SweetAlert2` para retroalimentación visual.
+
+---
+
+## 📁 Estructura del Proyecto
+
+```
+src/
+├── app/
+│   ├── application/       # Lógica de negocio (facades)
+│   ├── core/              # Modelos e interfaces con puertos
+│   ├── infraestructure/   # Servicios
+│   ├── presentation/      # Componentes visuales (form, list)
+│   ├── shared/            # Pipes, validadores, servicios comunes
+│   └── app.config.ts      # Configuración principal
+├── assets/                # Recursos estáticos (íconos, estilos, etc.)
+├── environments/          # Configuraciones por entorno
+├── index.html             # Entrada de la app
+└── styles.scss            # Estilos globales (Bootstrap incluido)
+```
+
+---
+
+## 🛠 Tecnologías Utilizadas
+
+- Angular 18
+- Bootstrap 5
+- SweetAlert2
+- RxJS
+- TypeScript
+- HTML + SCSS
+
+---
+
+## 📦 Librerías Instaladas
+
+```bash
+npm install bootstrap
+npm install sweetalert2
+```
+
+Asegúrate de incluir Bootstrap en `angular.json`:
+
+```json
+"styles": [
+  "node_modules/bootstrap/dist/css/bootstrap.min.css",
+  "src/styles.scss"
+],
+"scripts": [
+  "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+]
+```
+
+---
+
+## 🌐 Comunicación con Backend
+
+- Todos los datos son consumidos desde el backend Java (Spring Boot) a través de servicios (`HttpClient`) encapsulados en **facades** para mantener una arquitectura limpia y desacoplada.
+
+---
+
+## 👨‍💻 Autor
+
+Andrés Felipe Franco Monroy  
+GitHub: [https://github.com/afrancom2](https://github.com/afrancom2)  
+Email: afrancom2@gmail.com  
